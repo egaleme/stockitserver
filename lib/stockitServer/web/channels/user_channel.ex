@@ -14,7 +14,7 @@ defmodule StockitServer.Web.UserChannel do
         push socket, "create:user", resp
         {:reply, :ok, socket}
       {:error, _changeset} ->
-        {:reply, {:error, %{errors: "Could not create user"}}}
+        {:reply, {:error, %{errors: "Could not create user"}}, socket}
     end
   end
 

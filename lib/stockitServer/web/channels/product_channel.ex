@@ -60,8 +60,7 @@ defmodule StockitServer.Web.ProductChannel do
         broadcast! socket, "product_added", resp
         {:noreply, socket}
       {:error, _changeset} ->
-        push socket, "add_product_error", %{error: "Error. Product name is taken ٩(×̯×)۶"}
-        {:noreply, socket}
+        {:reply, {:error, %{errors: "Error. Product name is taken ٩(×̯×)۶"}}, socket}
     end
   end
 
@@ -75,8 +74,7 @@ defmodule StockitServer.Web.ProductChannel do
         broadcast! socket, "product_updated", resp
         {:noreply, socket}
       {:error, _changeset} ->
-        push socket, "update_product_error", %{error: "Error. Product name is taken ٩(×̯×)۶"}
-        {:noreply, socket}
+        {:reply, {:error, %{errors: "Error. Product name is taken ٩(×̯×)۶"}}, socket}
     end
   end
 
@@ -89,8 +87,7 @@ defmodule StockitServer.Web.ProductChannel do
          broadcast! socket, "product_deleted", %{noContent: ""}
          {:noreply, socket}
       {:error, _} ->
-        push socket, "delete_product_error", %{error: "Error. Product name is taken ٩(×̯×)۶"}
-        {:noreply, socket}
+        {:reply, {:error, %{errors: "Error. Product name is taken ٩(×̯×)۶"}}, socket}
     end
   end
 
