@@ -1,11 +1,9 @@
-defmodule StockitServer.AccessTokenView do
+defmodule StockitServer.Web.AccessTokenView do
 	use StockitServer.Web, :view
 
 	def render("verify_email.json", %{user: user}) do
 		%{
-			data: %{
-				verified: user.email_verified
-			}
-		}
+			verified: user.email_verified
+		}	
 	end
 end

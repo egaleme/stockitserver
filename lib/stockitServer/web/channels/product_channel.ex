@@ -7,13 +7,13 @@ defmodule StockitServer.Web.ProductChannel do
   def join("products:auth", %{"guardian_token" => token}, socket) do
     case sign_in(socket, token) do
       {:ok, socket, _guardian_params} ->
-      #  user = current_resource(socket)
-       # if user.email_verified do
+        user = current_resource(socket)
+       if user.email_verified do
         send(self(), :after_join)
         {:ok, socket}
-       # else
-       #  {:error, %{message: "Not authorized"}}
-       # end
+        else
+         {:error, %{message: "Not authorized"}}
+        end
       {:error, _} ->
         {:error, %{reason: "unauthorized"}}
     end
@@ -23,12 +23,12 @@ defmodule StockitServer.Web.ProductChannel do
     case sign_in(socket, token) do
       {:ok, socket, _guardian_params} ->
        
-       # user = current_resource(socket)
-       # if user.email_verified do
+        user = current_resource(socket)
+        if user.email_verified do
         {:ok, %{message: "Joined"}, socket}
-      #else
-      #  {:error, %{message: "Not authorized"}}
-     # end
+      else
+        {:error, %{message: "Not authorized"}}
+      end
       {:error, _} ->
         {:error, %{reason: "unauthorized"}}
     end

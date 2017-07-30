@@ -1,4 +1,4 @@
-defmodule StockitServer.AccessTokenController do
+defmodule StockitServer.Web.AccessTokenController do
 	use StockitServer.Web, :controller
 
 	alias StockitServer.Account
@@ -21,7 +21,6 @@ defmodule StockitServer.AccessTokenController do
 			|> put_status(:not_found)
 			|> json(%{error: "invalid token"})
 		end
-
 	end
 	
 end

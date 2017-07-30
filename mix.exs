@@ -17,7 +17,7 @@ defmodule StockitServer.Mixfile do
   # Type `mix help compile.app` for more information.
   def application do
     [mod: {StockitServer.Application, []},
-     extra_applications: [:logger, :runtime_tools, :absinthe_plug, :amnesia,  :absinthe, :amnesia, :bamboo, :oauth2, :ueberauth, :ueberauth_github, :ueberauth_google, :ueberauth_facebook, :ueberauth_identity, :canary, :guardian]]
+     extra_applications: [:logger, :swoosh, :gen_smtp, :phoenix_swoosh, :runtime_tools, :absinthe_plug, :amnesia,  :absinthe, :amnesia, :bamboo, :oauth2, :ueberauth, :ueberauth_github, :ueberauth_google, :ueberauth_facebook, :ueberauth_identity, :canary, :guardian]]
   end
 
   # Specifies which paths to compile per environment.
@@ -58,7 +58,14 @@ defmodule StockitServer.Mixfile do
      {:bodyguard, "~> 1.0.0"},
      {:secure_random, "~> 0.5.1"},
      {:oauth2, "~> 0.8.0"},
-     {:guardian, "~> 0.14"}]
+     {:guardian, "~> 0.14"},
+    # {:mailgun, "~> 0.1.2"},
+     {:swoosh, "~> 0.8.1"},
+     {:phoenix_swoosh, "~> 0.2"},
+     {:gen_smtp, "~> 0.11.0"},
+     {:gravatar, "~> 0.1.0"},
+     {:exgravatar, "~> 2.0"},
+     {:image64, "~> 0.0.2"}]
   end
 
   # Aliases are shortcuts or tasks specific to the current project.

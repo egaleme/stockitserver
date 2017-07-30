@@ -29,8 +29,16 @@ config :logger, :console,
   ttl: { 30, :days },
   allowed_drift: 2000,
   verify_issuer: true, # optional
-  secret_key: System.get_env("GUARDIAN_SECRET") || "qxuAfnvouzOG95QRQx+EWW159ncOabnYEbcNYxDQR0l83EBqNvx+EMVJgmghNaqA",
+  secret_key: System.get_env("GUARDIAN_SECRET"),
   serializer: StockitServer.Web.GuardianSerializer
+
+  config :stockitServer, StockitServer.Mailer,
+  adapter: Swoosh.Adapters.SMTP,
+  relay: "smtp.gmail.com",
+  username: System.get_env("GMAIL_TEST_USERNAME"),
+  password: System.get_env("GMAIL_TEST_PASSWORD"),
+  tls: :always,
+  auth: :always
 
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.

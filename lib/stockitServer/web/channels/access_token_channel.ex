@@ -1,6 +1,7 @@
 defmodule StockitServer.Web.AccessTokenChannel do
   use StockitServer.Web, :channel
 
+
   def join("access_token:enter", _payload, socket) do
     {:ok, socket}
   end
@@ -12,6 +13,9 @@ defmodule StockitServer.Web.AccessTokenChannel do
         resp = %{data: %{access_token: jwt}}
         push socket, "create", resp
         {:noreply, socket}
+
+      {:err, :notverified} ->
+        {:reply, {:error, %{errors: "please verify your email address"}}, socket}
       {:err, :unauthorized} ->
         {:reply, {:error, %{errors: "user password incorrect"}}, socket}
       {:err, :notfound} ->

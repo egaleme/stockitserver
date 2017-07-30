@@ -44,5 +44,3 @@ config :stockitServer, StockitServer.Repo,
   database: "stockitserver_dev",
   hostname: "127.0.0.1",
   pool_size: 10
-
-import_config "dev.secret.exs"
