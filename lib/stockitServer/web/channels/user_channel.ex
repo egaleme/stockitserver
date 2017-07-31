@@ -4,7 +4,6 @@ defmodule StockitServer.Web.UserChannel do
   alias StockitServer.Web.UserView
   alias StockitServer.UserEmail
   alias StockitServer.Mailer
-  require Logger
 
   def join("user:lobby", _payload, socket) do
       {:ok, socket}
@@ -13,7 +12,6 @@ defmodule StockitServer.Web.UserChannel do
   def handle_in("create:user", %{"user" => user_params}, socket) do
     case Account.create_user(user_params) do
       {:ok, user} ->
-        Logger.debug user.token
         UserEmail.welcome(user)|>Mailer.deliver
         resp = %{data: Phoenix.View.render_one(user, UserView, "user.json")}
         push socket, "create:user", resp
