@@ -1,5 +1,5 @@
-defmodule StocitServer.Web.PageController do
-  use StocitServer.Web, :controller
+defmodule StockitServer.Web.PageController do
+  use StockitServer.Web, :controller
 
   def index(conn, _params) do
     	conn
