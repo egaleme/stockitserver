@@ -13,6 +13,12 @@ defmodule StockitServer.Web.Router do
     plug JaSerializer.Deserializer
   end 
 
+    scope "/", StockitServer.Web do
+    pipe_through :api # Use the default browser stack
+
+    get "/", PageController, :index
+  end
+
   scope "/v1/api/auth", StockitServer.Web do
     pipe_through :api
      get "/verify_email/:token", AccessTokenController, :verify_email 
