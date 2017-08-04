@@ -40,9 +40,12 @@ config :stockitServer, StockitServer.Repo,
   serializer: StockitServer.Web.GuardianSerializer
 
   config :stockitServer, StockitServer.Mailer,
-  adapter: Swoosh.Adapters.Mailgun,
-  api_key: System.get_env("MAILGUN_API_KEY"),
-  domain: System.get_env("MAILGUN_DOMAIN")
+  adapter: Swoosh.Adapters.SMTP,
+  relay: "smtp.gmail.com",
+  username: System.get_env("GMAIL_TEST_USERNAME"),
+  password: System.get_env("GMAIL_TEST_PASSWORD"),
+  tls: :always,
+  auth: :always
  
 
 # ## SSL Support
